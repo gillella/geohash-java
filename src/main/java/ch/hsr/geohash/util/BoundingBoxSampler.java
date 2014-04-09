@@ -27,7 +27,10 @@ public class BoundingBoxSampler {
 		if (maxSamplesLong > Integer.MAX_VALUE) {
 			throw new IllegalArgumentException("This bounding box is too big too sample using this algorithm");
 		}
-		maxSamples = (int) maxSamplesLong;
+		//maxSamples = (int) maxSamplesLong;
+		//getting negative number for steps in between for some areas in northern hemispear
+		//and hasNext method throwing runtime exception from Random.
+		maxSamples = Math.abs((int) maxSamplesLong);
 	}
 
 	public BoundingBoxSampler(TwoGeoHashBoundingBox bbox, long seed) {
